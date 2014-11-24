@@ -1,0 +1,14 @@
+import numpy as np
+import scipy as sp
+import scipy.io as io
+import pylab as p1
+
+mat=io.loadmat('/home/maddoxx/cfrp_16_holes_DFM001to01_100s.mat')
+a=mat['imgseq']
+b=a[1][1][0:a.shape[2]]
+c=np.correlate(b, b, mode='full', old_behavior=False)
+d=np.linspace(0,5598,num=5599)
+e= np.linspace(0,2799,num=2800)
+p1.plot(e,b)
+p1.show()
+
