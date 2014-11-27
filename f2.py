@@ -1,3 +1,4 @@
+__author__ = 'maddoxx'
 import numpy as np
 import scipy as sp
 import scipy.io as io
@@ -10,6 +11,7 @@ b=a[1][1][0:a.shape[2]]
 c=np.correlate(b, b, mode='full', old_behavior=False)
 d=range(0,2*a.shape[2]-1)
 e= range(0,a.shape[2])
+
 
 z = np.polyfit(e, b, 2)
 f=np.poly1d(z)
@@ -24,11 +26,4 @@ x_normalized=x_new
 #p1.plot(x_normalized,y_normalized)
 y_correlated=np.correlate(y_normalized,y_normalized, mode='full', old_behavior=False)
 x_correlated=range(0,2*a.shape[2]-1)
-#p1.plot(x_correlated,y_correlated)
-#p1.ylabel('amplitude along y')
-#p1.xlabel('samples ')
-
 p1.show()
-
-
-
