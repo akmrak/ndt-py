@@ -17,14 +17,14 @@ x=e
 y=b
 x_new=e
 y_new=f(x_new)
-p1.plot(e,b)
-p1.plot(x_new,y_new)
+#p1.plot(e,b)
+#p1.plot(x_new,y_new)
 y_normalized=np.subtract(y_new,y)
 x_normalized=x_new
 #p1.plot(x_normalized,y_normalized)
 y_correlated=np.correlate(y_normalized,y_normalized, mode='full', old_behavior=False)
 x_correlated=range(0,2*a.shape[2]-1)
-#p1.plot(x_correlated,y_correlated)
+p1.plot(x_correlated,y_correlated)
 #p1.ylabel('amplitude along y')
 #p1.xlabel('samples ')
 

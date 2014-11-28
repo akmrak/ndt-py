@@ -11,7 +11,7 @@ a=mat['imgseq']                #save the mat file into python array
 vid_data=np.array(a)           #save the mat file into numpy python array
 
 
-
+#calculate reference pixel correlation
 b=a[1][1][0:a.shape[2]]        #reference pixel with which we corelate later
 d=range(0,2*a.shape[2]-1)
 e= range(0,a.shape[2])
@@ -26,20 +26,21 @@ x_normalized=x_new
 
 
 new_data=np.zeros((320,256,5599))
-for x in range(0,320):
-    for y in range(0,256):
-        z = np.polyfit(e,vid_data[x,y ,:],2)            #calculate the curve fitting polynomial coefficients
-        f=np.poly1d(z)
-        x_new=e
-        y_new=f(x_new)                                  #calculate the curve fitting polynomial
-        y_normalized=np.subtract(y_new,y)
-        x_normalized=x_new
-        y_correlated=np.correlate(y_normalized,y_normalized_11, mode='full', old_behavior=False)
-        x_correlated=range(0,2*a.shape[2]-1)
-        new_data[x,y,:]=y_correlated
-        print  'The value of x is ', x , ', and y is ' ,y, '...'
+x=22
+y=24
+z = np.polyfit(e,vid_data[x,y ,:],2)            #calculate the curve fitting polynomial coefficients
+f=np.poly1d(z)
+x_new=e
+y_new=f(x_new)                                  #calculate the curve fitting polynomial
+y_normalized=np.subtract(y_new,vid_data[x,y ,:])
+x_normalized=x_new
+y_correlated=np.correlate(y_normalized,y_normalized_11, mode='full', old_behavior=False)
+x_correlated=range(0,2*a.shape[2]-1)
+new_data[x,y,:]=y_correlated
+print  'The value of x is ', x , ', and y is ' ,y, '...'
 
 
 
-
+p1.plot(x_correlated,y_correlated)
+p1.show()
 print 'end'
