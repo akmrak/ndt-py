@@ -32,9 +32,11 @@ for x in range(0,320):
         f=np.poly1d(z)
         x_new=e
         y_new=f(x_new)                                  #calculate the curve fitting polynomial
-        y_normalized=np.subtract(y_new,y)
+        y_normalized=np.subtract(y_new,vid_data[x,y ,:])
         x_normalized=x_new
         y_correlated=np.correlate(y_normalized,y_normalized_11, mode='full', old_behavior=False)
+        max1=np.amax(y_correlated)
+        y_correlated /=max1
         x_correlated=range(0,2*a.shape[2]-1)
         new_data[x,y,:]=y_correlated
         print  'The value of x is ', x , ', and y is ' ,y, '...'
